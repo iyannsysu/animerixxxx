@@ -40,7 +40,6 @@
             padding-bottom: var(--bottom-nav-height);
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -181,7 +180,6 @@
             align-items: center;
         }
 
-        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
             background: transparent;
@@ -316,6 +314,7 @@
         .hero-actions {
             display: flex;
             gap: 12px;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -360,13 +359,12 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        .btn-sm {
-            padding: 8px 14px;
-            font-size: 12px;
-            min-height: 36px;
+        .btn-accent {
+            background: var(--gradient-2);
+            color: white;
         }
 
-        /* Hero Navigation Dots */
+        /* Hero Navigation */
         .hero-nav {
             position: absolute;
             bottom: 20px;
@@ -430,6 +428,9 @@
             transition: color 0.3s;
             padding: 8px 12px;
             border-radius: 15px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
         }
 
         .section-link:hover {
@@ -516,34 +517,6 @@
         .anime-card-rating i {
             color: #fbbf24;
             font-size: 9px;
-        }
-
-        .anime-card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 15px 10px 10px;
-            background: linear-gradient(0deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .anime-card:hover .anime-card-overlay {
-            opacity: 1;
-        }
-
-        .play-btn {
-            width: 36px;
-            height: 36px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            margin: 0 auto;
         }
 
         .anime-card-info {
@@ -702,6 +675,7 @@
             align-items: center;
             gap: 8px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
 
         .pagination button {
@@ -1006,7 +980,7 @@
             transform: scale(0.95);
         }
 
-        /* Episode Page */
+        /* ========== VIDEO PLAYER SECTION ========== */
         .episode-page {
             max-width: 1400px;
             margin: 0 auto;
@@ -1020,17 +994,70 @@
             margin-bottom: 20px;
         }
 
-        .player-header {
-            padding: 12px 15px;
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-card) 0%, #1a1a2e 100%);
+            color: var(--text-secondary);
+            gap: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .video-placeholder i {
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .video-placeholder h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .video-placeholder p {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        /* Player Controls */
+        .player-controls {
+            padding: 15px;
             background: var(--bg-card-hover);
+        }
+
+        .player-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
+            margin-bottom: 15px;
         }
 
-        .player-header h2 {
+        .player-title {
             font-size: 14px;
             font-weight: 600;
             flex: 1;
@@ -1048,17 +1075,21 @@
         .player-tab {
             padding: 8px 14px;
             background: transparent;
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-secondary);
             cursor: pointer;
             font-size: 12px;
             border-radius: 8px;
             transition: all 0.3s;
             min-height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .player-tab.active {
             background: var(--primary);
+            border-color: var(--primary);
             color: white;
         }
 
@@ -1066,36 +1097,45 @@
             transform: scale(0.95);
         }
 
-        .player-frame {
-            aspect-ratio: 16/9;
-            background: #000;
-            width: 100%;
+        /* Watch Button - Full Width */
+        .watch-btn-container {
+            padding: 15px;
         }
 
-        .player-frame iframe {
+        .watch-btn-large {
             width: 100%;
-            height: 100%;
+            padding: 15px 20px;
+            background: var(--gradient-1);
+            color: white;
             border: none;
-        }
-
-        .player-placeholder {
-            width: 100%;
-            height: 100%;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
             gap: 10px;
+            min-height: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
         }
 
-        .player-placeholder i {
-            font-size: 40px;
-            opacity: 0.5;
+        .watch-btn-large:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+        }
+
+        .watch-btn-large:active {
+            transform: scale(0.98);
+        }
+
+        .watch-btn-large i {
+            font-size: 18px;
         }
 
         /* Server List */
-        .server-list {
+        .server-section {
             padding: 15px;
         }
 
@@ -1108,10 +1148,21 @@
         }
 
         .server-quality h4 {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-secondary);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .server-quality h4::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
         }
 
         .server-buttons {
@@ -1121,18 +1172,21 @@
         }
 
         .server-btn {
-            padding: 10px 14px;
+            padding: 12px 16px;
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text-primary);
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
             transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 6px;
-            min-height: 40px;
+            gap: 8px;
+            min-height: 44px;
+            flex: 1;
+            min-width: 120px;
+            justify-content: center;
         }
 
         .server-btn:hover {
@@ -1144,12 +1198,18 @@
             transform: scale(0.95);
         }
 
-        .server-btn i {
-            color: var(--primary);
-            font-size: 11px;
+        .server-btn.selected {
+            background: var(--primary);
+            border-color: var(--primary);
         }
 
-        .server-btn:hover i {
+        .server-btn i {
+            color: var(--primary);
+            font-size: 12px;
+        }
+
+        .server-btn:hover i,
+        .server-btn.selected i {
             color: white;
         }
 
@@ -1161,24 +1221,32 @@
         .download-quality {
             margin-bottom: 15px;
             background: var(--bg-card-hover);
-            padding: 12px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 10px;
         }
 
         .download-quality:last-child {
             margin-bottom: 0;
         }
 
+        .download-quality-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
         .download-quality h4 {
-            font-size: 13px;
-            margin-bottom: 3px;
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .download-quality span {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-secondary);
-            display: block;
-            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 5px;
         }
 
         .download-links {
@@ -1188,18 +1256,19 @@
         }
 
         .download-btn {
-            padding: 8px 14px;
+            padding: 10px 16px;
             background: var(--gradient-1);
             border: none;
             border-radius: 8px;
             color: white;
-            font-size: 12px;
+            font-size: 13px;
             cursor: pointer;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 6px;
-            min-height: 36px;
+            gap: 8px;
+            min-height: 40px;
+            transition: all 0.3s;
         }
 
         .download-btn:hover {
@@ -1220,6 +1289,7 @@
             background: var(--bg-card);
             border-radius: 12px;
             margin-bottom: 15px;
+            flex-wrap: wrap;
         }
 
         .episode-nav-btn {
@@ -1250,6 +1320,15 @@
         .episode-nav-btn.disabled {
             opacity: 0.4;
             pointer-events: none;
+        }
+
+        .episode-nav-btn.home-btn {
+            background: var(--gradient-2);
+            border-color: var(--secondary);
+        }
+
+        .episode-nav-btn.home-btn:hover {
+            opacity: 0.9;
         }
 
         /* Recommended */
@@ -1595,8 +1674,13 @@
                 font-size: 28px;
             }
 
-            .player-header h2 {
+            .player-title {
                 font-size: 16px;
+            }
+
+            .server-btn {
+                flex: none;
+                min-width: auto;
             }
         }
 
@@ -1765,6 +1849,7 @@
         let searchTimeout = null;
         let currentSlide = 0;
         let heroInterval = null;
+        let currentStreamUrl = null;
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
@@ -1830,7 +1915,6 @@
         function updateNav(page) {
             currentPage = page;
             
-            // Desktop Nav
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
                 if (link.dataset.page === page) {
@@ -1838,7 +1922,6 @@
                 }
             });
 
-            // Mobile Nav
             document.querySelectorAll('.mobile-nav-item').forEach(item => {
                 item.classList.remove('active');
                 if (item.dataset.page === page) {
@@ -1914,7 +1997,6 @@
                     searchResults.innerHTML = html;
                     searchResults.classList.add('show');
 
-                    // Add click handlers
                     searchResults.querySelectorAll('.search-result-item').forEach(item => {
                         item.addEventListener('click', () => {
                             goToAnime(item.dataset.slug);
@@ -1965,7 +2047,6 @@
         function renderHome(data) {
             const mainContent = document.getElementById('mainContent');
             
-            // Hero Slider
             const heroAnime = data.ongoing.animeList.slice(0, 5);
             let heroHtml = `
                 <section class="hero">
@@ -2002,7 +2083,6 @@
                 </section>
             `;
 
-            // Ongoing Section
             let ongoingHtml = `
                 <section class="section">
                     <div class="section-header">
@@ -2017,7 +2097,6 @@
                 </section>
             `;
 
-            // Completed Section
             let completedHtml = `
                 <section class="section">
                     <div class="section-header">
@@ -2034,17 +2113,14 @@
 
             mainContent.innerHTML = heroHtml + ongoingHtml + completedHtml + renderFooter();
 
-            // Setup Hero Slider
             setupHeroSlider(heroAnime);
 
-            // Setup Section Links
             document.querySelectorAll('.section-link').forEach(btn => {
                 btn.addEventListener('click', () => {
                     navigateTo(btn.dataset.page);
                 });
             });
 
-            // Setup Hero Actions
             document.querySelectorAll('.hero-actions button, .hero-dot').forEach(btn => {
                 btn.addEventListener('click', () => {
                     if (btn.dataset.slug) {
@@ -2053,7 +2129,6 @@
                 });
             });
 
-            // Setup Anime Cards
             setupAnimeCards();
         }
 
@@ -2074,7 +2149,6 @@
             const dots = document.querySelectorAll('.hero-dot');
             const slides = document.querySelectorAll('.hero-slide');
             const heroTitle = document.getElementById('heroTitle');
-            const heroBadge = document.querySelector('.hero-badge');
             const heroMeta = document.querySelector('.hero-meta');
             const heroAction = document.querySelector('.hero-actions button');
 
@@ -2185,13 +2259,11 @@
         function renderSchedule(schedule) {
             const mainContent = document.getElementById('mainContent');
             
-            // Sort by day
             const dayOrder = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             const sortedSchedule = [...schedule].sort((a, b) => 
                 dayOrder.indexOf(a.day) - dayOrder.indexOf(b.day)
             );
 
-            // Find today
             const today = new Date();
             const todayDay = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][today.getDay()];
 
@@ -2228,7 +2300,6 @@
 
             mainContent.innerHTML = html + renderFooter();
 
-            // Setup Schedule Items
             document.querySelectorAll('.schedule-item').forEach(item => {
                 item.addEventListener('click', () => {
                     if (item.dataset.slug) {
@@ -2274,7 +2345,6 @@
 
             mainContent.innerHTML = html + renderFooter();
 
-            // Setup Genre Pills
             document.querySelectorAll('.genre-pill').forEach(pill => {
                 pill.addEventListener('click', () => {
                     showGenreAnime(pill.dataset.genreId, pill.dataset.genreTitle);
@@ -2318,7 +2388,6 @@
 
             mainContent.innerHTML = html + renderFooter();
             
-            // Setup Anime Cards
             setupAnimeCards();
         }
 
@@ -2391,13 +2460,11 @@
         function renderAnimeDetail(anime) {
             const mainContent = document.getElementById('mainContent');
             
-            // Combine synopsis
             let synopsis = '';
             if (anime.synopsis && anime.synopsis.paragraphs) {
                 synopsis = anime.synopsis.paragraphs.join('<br><br>');
             }
 
-            // Batch download
             let batchHtml = '';
             if (anime.batch && anime.batch.length > 0) {
                 batchHtml = `
@@ -2499,7 +2566,6 @@
             mainContent.innerHTML = html + renderFooter();
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Setup Episode Items
             document.querySelectorAll('.episode-item').forEach(item => {
                 item.addEventListener('click', () => {
                     if (item.dataset.episode) {
@@ -2508,7 +2574,6 @@
                 });
             });
 
-            // Setup Watch Button
             const watchBtn = document.querySelector('.btn-primary[data-episode]');
             if (watchBtn) {
                 watchBtn.addEventListener('click', () => {
@@ -2516,14 +2581,12 @@
                 });
             }
 
-            // Setup Genre Buttons
             document.querySelectorAll('.detail-genre').forEach(btn => {
                 btn.addEventListener('click', () => {
                     showGenreAnime(btn.dataset.genreId, btn.dataset.genreTitle);
                 });
             });
 
-            // Setup Recommended Cards
             setupAnimeCards();
         }
 
@@ -2540,20 +2603,24 @@
             }
         }
 
-        // Render Episode
+        // Render Episode Page
         function renderEpisode(episode) {
             const mainContent = document.getElementById('mainContent');
-
+            currentStreamUrl = episode.defaultStreamingUrl || null;
+            
             // Server list
-            let serverHtml = '<div class="server-list">';
+            let serverHtml = '<div class="server-section">';
             if (episode.server && episode.server.qualities) {
                 episode.server.qualities.forEach(quality => {
                     serverHtml += `
                         <div class="server-quality">
                             <h4>${quality.title}</h4>
                             <div class="server-buttons">
-                                ${quality.serverList.map(server => `
-                                    <button class="server-btn" data-server-id="${server.serverId}" data-server-title="${server.title.trim()}">
+                                ${quality.serverList.map((server, idx) => `
+                                    <button class="server-btn" 
+                                            data-server-id="${server.serverId}" 
+                                            data-server-title="${server.title.trim()}"
+                                            data-quality="${quality.title}">
                                         <i class="fas fa-play-circle"></i> ${server.title.trim()}
                                     </button>
                                 `).join('')}
@@ -2565,13 +2632,15 @@
             serverHtml += '</div>';
 
             // Download list
-            let downloadHtml = '<div class="download-section">';
+            let downloadHtml = '<div class="download-section" style="display: none;">';
             if (episode.downloadUrl && episode.downloadUrl.qualities) {
                 episode.downloadUrl.qualities.forEach(quality => {
                     downloadHtml += `
                         <div class="download-quality">
-                            <h4>${quality.title}</h4>
-                            <span>${quality.size}</span>
+                            <div class="download-quality-header">
+                                <h4>${quality.title}</h4>
+                                <span>${quality.size}</span>
+                            </div>
                             <div class="download-links">
                                 ${quality.urls.map(url => `
                                     <a href="${url.url}" target="_blank" class="download-btn">
@@ -2600,50 +2669,80 @@
 
             let html = `
                 <section class="episode-page">
+                    <!-- Episode Navigation -->
                     <div class="episode-nav">
                         ${prevBtn}
-                        <button class="episode-nav-btn" onclick="goToAnime('${episode.animeId}')">
-                            <i class="fas fa-home"></i> Kembali
+                        <button class="episode-nav-btn home-btn" onclick="goToAnime('${episode.animeId}')">
+                            <i class="fas fa-list"></i> Daftar Episode
                         </button>
                         ${nextBtn}
                     </div>
 
+                    <!-- Video Player -->
                     <div class="episode-player">
-                        <div class="player-header">
-                            <h2>${episode.title}</h2>
-                            <div class="player-tabs">
-                                <button class="player-tab active" data-tab="stream">
-                                    <i class="fas fa-play"></i> Stream
-                                </button>
-                                <button class="player-tab" data-tab="download">
-                                    <i class="fas fa-download"></i> Download
-                                </button>
-                            </div>
+                        <div class="video-container" id="videoContainer">
+                            ${currentStreamUrl ? `
+                                <iframe id="videoFrame" src="${currentStreamUrl}" allowfullscreen></iframe>
+                            ` : `
+                                <div class="video-placeholder">
+                                    <i class="fas fa-film"></i>
+                                    <h3>Pilih Server Streaming</h3>
+                                    <p>Klik tombol "Tonton Sekarang" di bawah atau pilih server untuk mulai menonton</p>
+                                </div>
+                            `}
                         </div>
                         
-                        <div id="streamTab">
-                            <div class="player-frame" id="playerFrame">
-                                ${episode.defaultStreamingUrl ? `
-                                    <iframe src="${episode.defaultStreamingUrl}" allowfullscreen></iframe>
-                                ` : `
-                                    <div class="player-placeholder">
-                                        <i class="fas fa-film"></i>
-                                        <p>Pilih server streaming di bawah</p>
-                                    </div>
-                                `}
+                        <!-- Watch Button -->
+                        <div class="watch-btn-container">
+                            <button class="watch-btn-large" id="watchBtn">
+                                <i class="fas fa-play"></i> 
+                                Tonton Sekarang
+                            </button>
+                        </div>
+
+                        <!-- Player Controls -->
+                        <div class="player-controls">
+                            <div class="player-header">
+                                <h2 class="player-title">${episode.title}</h2>
+                                <div class="player-tabs">
+                                    <button class="player-tab active" data-tab="stream">
+                                        <i class="fas fa-play"></i> Stream
+                                    </button>
+                                    <button class="player-tab" data-tab="download">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                </div>
                             </div>
-                            ${serverHtml}
                         </div>
+
+                        <!-- Server List -->
+                        ${serverHtml}
                         
-                        <div id="downloadTab" style="display: none;">
-                            ${downloadHtml}
-                        </div>
+                        <!-- Download Section -->
+                        ${downloadHtml}
                     </div>
                 </section>
             `;
 
             mainContent.innerHTML = html + renderFooter();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Setup Watch Button
+            const watchBtn = document.getElementById('watchBtn');
+            if (watchBtn) {
+                watchBtn.addEventListener('click', () => {
+                    if (currentStreamUrl) {
+                        // Open in new tab or use iframe
+                        openStream(currentStreamUrl);
+                    } else {
+                        // Auto select first server
+                        const firstServer = document.querySelector('.server-btn');
+                        if (firstServer) {
+                            firstServer.click();
+                        }
+                    }
+                });
+            }
 
             // Setup Tab Switching
             document.querySelectorAll('.player-tab').forEach(tab => {
@@ -2653,11 +2752,11 @@
                     tab.classList.add('active');
                     
                     if (tabName === 'stream') {
-                        document.getElementById('streamTab').style.display = 'block';
-                        document.getElementById('downloadTab').style.display = 'none';
+                        document.querySelector('.server-section').style.display = 'block';
+                        document.querySelector('.download-section').style.display = 'none';
                     } else {
-                        document.getElementById('streamTab').style.display = 'none';
-                        document.getElementById('downloadTab').style.display = 'block';
+                        document.querySelector('.server-section').style.display = 'none';
+                        document.querySelector('.download-section').style.display = 'block';
                     }
                 });
             });
@@ -2665,7 +2764,7 @@
             // Setup Server Buttons
             document.querySelectorAll('.server-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    loadServer(btn.dataset.serverId, btn.dataset.serverTitle);
+                    loadServer(btn.dataset.serverId, btn.dataset.serverTitle, btn.dataset.quality);
                 });
             });
 
@@ -2677,16 +2776,41 @@
             });
         }
 
+        // Open Stream - Opens in new tab for better compatibility
+        function openStream(url) {
+            if (url) {
+                window.open(url, '_blank');
+            }
+        }
+
         // Load Server
-        async function loadServer(serverId, serverName) {
-            showToast(`Loading server ${serverName}...`);
+        async function loadServer(serverId, serverName, quality) {
+            showToast(`Loading ${serverName} (${quality})...`);
             
             const data = await fetchAPI(`/server/${serverId}`);
             
             if (data.ok && data.data.url) {
-                const playerFrame = document.getElementById('playerFrame');
-                playerFrame.innerHTML = `<iframe src="${data.data.url}" allowfullscreen></iframe>`;
-                showToast(`Server ${serverName} berhasil dimuat`);
+                const videoContainer = document.getElementById('videoContainer');
+                const watchBtn = document.getElementById('watchBtn');
+                
+                // Update iframe
+                videoContainer.innerHTML = `<iframe id="videoFrame" src="${data.data.url}" allowfullscreen></iframe>`;
+                
+                // Update watch button
+                if (watchBtn) {
+                    watchBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> Buka di Tab Baru';
+                }
+                
+                // Update selected server
+                document.querySelectorAll('.server-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                    if (btn.dataset.serverId === serverId) {
+                        btn.classList.add('selected');
+                    }
+                });
+                
+                currentStreamUrl = data.data.url;
+                showToast(`${serverName} (${quality}) siap ditonton`);
             } else {
                 showToast('Gagal memuat server');
             }
